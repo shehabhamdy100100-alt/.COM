@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi System - للحلول البرمجية</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header id="header">
+        <div class="container">
+            <div class="header-inner">
+                <div class="logo">
+                    <div class="logo-icon">MS</div>
+                    <div class="logo-text">
+                        <span class="logo-name">Multi System</span>
+                        <span class="logo-subtitle">للحلول البرمجية</span>
+                    </div>
+                </div>
+                <nav class="nav-menu">
+                    <a href="#home">الرئيسية</a>
+                    <a href="#features">المميزات</a>
+                    <a href="#pricing">الباقات</a>
+                    <a href="#testimonials">آراء العملاء</a>
+                    <a href="#contact">تواصل معنا</a>
+                </nav>
+                <button class="btn-primary">ابدأ الآن</button>
+                <button class="mobile-btn" id="mobileBtn">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+            <div class="mobile-menu" id="mobileMenu">
+                <a href="#home">الرئيسية</a>
+                <a href="#features">المميزات</a>
+                <a href="#pricing">الباقات</a>
+                <a href="#testimonials">آراء العملاء</a>
+                <a href="#contact">تواصل معنا</a>
+            </div>
+        </div>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-content">
+                    <span class="hero-badge">🚀 نظام محاسبي متكامل</span>
+                    <h1 class="hero-title">نظام محاسبي<span class="hero-accent">متكامل لأعمالك</span></h1>
+                    <p class="hero-desc">إدارة مالية احترافية، فواتير إلكترونية، تقارير ذكية، ومتابعة المخزون - كل ما تحتاجه في منصة واحدة سهلة الاستخدام.</p>
+                    <div class="hero-buttons">
+                        <button class="btn-white">ابدأ تجربة مجانية</button>
+                        <button class="btn-glass">شاهد الفيديو</button>
+                    </div>
+                    <div class="hero-stats">
+                        <div class="stat-box"><span class="stat-num">500+</span><span class="stat-label">عميل نشط</span></div>
+                        <div class="stat-box"><span class="stat-num">99.9%</span><span class="stat-label">وقت التشغيل</span></div>
+                        <div class="stat-box"><span class="stat-num">24/7</span><span class="stat-label">دعم فني</span></div>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <div class="glass-box">
+                        <div class="browser">
+                            <div class="browser-header"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
+                            <div class="browser-body"><div class="line line-1"></div><div class="line line-2"></div><div class="block"></div><div class="grid-box"><div class="grid-item"></div><div class="grid-item"></div><div class="grid-item"></div></div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="features">
+        <div class="container">
+            <div class="section-head"><span class="badge">مميزات النظام</span><h2 class="section-title">كل ما تحتاجه لإدارة أعمالك</h2><p class="section-desc">نظام متكامل يجمع كل أدوات الإدارة المالية والمحاسبية في مكان واحد</p></div>
+            <div class="features-grid">
+                <div class="feature-card"><div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg></div><h3>إدارة الحسابات</h3><p>دفتر الأستاذ العام، الحسابات المساعدة، والتقارير المالية الشاملة</p></div>
+                <div class="feature-card"><div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg></div><h3>الفواتير الإلكترونية</h3><p>إنشاء وإرسال فواتير احترافية مع QR Code وتتبع حالة الدفع</p></div>
+                <div class="feature-card"><div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg></div><h3>إدارة المخزون</h3><p>تتبع المنتجات، تنبيهات نقص المخزون، وإدارة المستودعات</p></div>
+                <div class="feature-card"><div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg></div><h3>إدارة العملاء</h3><p>قاعدة بيانات العملاء، سجل التعاملات، وتقارير التحصيل</p></div>
+                <div class="feature-card"><div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg></div><h3>التقارير الذكية</h3><p>تقارير تفصيلية، رسوم بيانية، وتحليلات لاتخاذ قرارات أفضل</p></div>
+                <div class="feature-card"><div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg></div><h3>أمان عالي</h3><p>تشفير البيانات، نسخ احتياطي تلقائي، وصلاحيات المستخدمين</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="pricing" class="pricing">
+        <div class="container">
+            <div class="section-head"><span class="badge">باقات الاشتراك</span><h2 class="section-title">اختر الباقة المناسبة لك</h2><p class="section-desc">باقات مرنة تناسب جميع أحجام الأعمال مع ضمان استرداد خلال 14 يوم</p></div>
+            <div class="pricing-grid">
+                <div class="price-card"><div class="price-head"><h3>الباقة الأساسية</h3><span>للمشاريع الصغيرة</span></div><div class="price-amount"><strong>199</strong><span>ريال / شهر</span></div><ul class="price-features"><li><span class="check">✓</span> مستخدم واحد</li><li><span class="check">✓</span> 500 فاتورة شهرياً</li><li><span class="check">✓</span> إدارة المخزون</li><li><span class="check">✓</span> تقارير أساسية</li><li><span class="check">✓</span> دعم فني بالبريد</li></ul><button class="btn-outline">اشترك الآن</button></div>
+                <div class="price-card popular"><span class="popular-tag">الأكثر طلباً</span><div class="price-head"><h3>الباقة الاحترافية</h3><span>للمؤسسات المتوسطة</span></div><div class="price-amount"><strong class="green">399</strong><span>ريال / شهر</span></div><ul class="price-features"><li><span class="check">✓</span> 5 مستخدمين</li><li><span class="check">✓</span> فواتير غير محدودة</li><li><span class="check">✓</span> إدارة الفروع</li><li><span class="check">✓</span> تقارير متقدمة</li><li><span class="check">✓</span> دعم فني 24/7</li></ul><button class="btn-primary w-full">اشترك الآن</button></div>
+                <div class="price-card"><div class="price-head"><h3>الباقة المؤسسية</h3><span>للشركات الكبيرة</span></div><div class="price-amount"><strong>799</strong><span>ريال / شهر</span></div><ul class="price-features"><li><span class="check">✓</span> مستخدمين غير محدود</li><li><span class="check">✓</span> فواتير غير محدودة</li><li><span class="check">✓</span> API مخصص</li><li><span class="check">✓</span> تقارير مخصصة</li><li><span class="check">✓</span> مدير حساب مخصص</li></ul><button class="btn-outline">اشترك الآن</button></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonials" class="testimonials">
+        <div class="container">
+            <div class="section-head"><span class="badge">آراء العملاء</span><h2 class="section-title">ماذا يقول عملاؤنا</h2><p class="section-desc">آراء حقيقية من عملاء يستخدمون نظامنا يومياً</p></div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card"><div class="stars">★★★★★</div><p class="testimonial-text">نظام رائع ساعدنا في تنظيم حساباتنا وتوفير وقت كبير. الدعم الفني ممتاز والتحديثات مستمرة.</p><div class="author"><div class="author-avatar">أ</div><div class="author-info"><h4>أحمد محمد</h4><span>مدير شركة تجارية</span></div></div></div>
+                <div class="testimonial-card"><div class="stars">★★★★★</div><p class="testimonial-text">أفضل نظام محاسبي استخدمته. سهولة في التعامل وتقارير شاملة تساعد في اتخاذ القرارات.</p><div class="author"><div class="author-avatar">س</div><div class="author-info"><h4>سارة أحمد</h4><span>محاسبة قانونية</span></div></div></div>
+                <div class="testimonial-card"><div class="stars">★★★★★</div><p class="testimonial-text">انتقلنا من نظام يدوي إلى Multi System ووفرنا 70% من الوقت. أنصح به بشدة!</p><div class="author"><div class="author-avatar">م</div><div class="author-info"><h4>محمد علي</h4><span>صاحب مصنع</span></div></div></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="contact-grid">
+                <div class="contact-info"><h2>تواصل معنا</h2><p>نحن هنا لمساعدتك. تواصل معنا وسنرد عليك في أقرب وقت.</p><div class="contact-items"><div class="contact-item"><div class="contact-icon">📍</div><div><h4>العنوان</h4><p>الرياض، المملكة العربية السعودية</p></div></div><div class="contact-item"><div class="contact-icon">📞</div><div><h4>الهاتف</h4><p dir="ltr">+966 50 123 4567</p></div></div><div class="contact-item"><div class="contact-icon">✉️</div><div><h4>البريد الإلكتروني</h4><p>info@multisystem.sa</p></div></div><div class="contact-item"><div class="contact-icon">🕐</div><div><h4>ساعات العمل</h4><p>الأحد - الخميس: 9 صباحاً - 6 مساءً</p></div></div></div></div>
+                <div class="contact-form-box"><form id="contactForm"><div class="form-group"><label>الاسم الكامل</label><input type="text" placeholder="أدخل اسمك"></div><div class="form-group"><label>البريد الإلكتروني</label><input type="email" placeholder="أدخل بريدك الإلكتروني"></div><div class="form-group"><label>رقم الجوال</label><input type="tel" placeholder="أدخل رقم جوالك"></div><div class="form-group"><label>الرسالة</label><textarea placeholder="اكتب رسالتك هنا..."></textarea></div><button type="submit" class="btn-primary w-full">إرسال الرسالة</button></form></div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container"><div class="footer-grid"><div class="footer-brand"><div class="footer-logo">MS</div><h3>Multi System</h3><p>للحلول البرمجية</p><p class="footer-desc">نظام محاسبي متكامل يساعدك على إدارة أعمالك بكفاءة عالية وتحقيق النمو المستمر.</p></div><div class="footer-links"><h4>روابط سريعة</h4><a href="#home">الرئيسية</a><a href="#features">المميزات</a><a href="#pricing">الباقات</a><a href="#contact">تواصل معنا</a></div><div class="footer-links"><h4>الدعم</h4><a href="#">مركز المساعدة</a><a href="#">الأسئلة الشائعة</a><a href="#">سياسة الخصوصية</a><a href="#">الشروط والأحكام</a></div><div class="footer-social"><h4>تابعنا</h4><div class="social-icons"><a href="#" class="social-icon">f</a><a href="#" class="social-icon">t</a><a href="#" class="social-icon">in</a><a href="#" class="social-icon">ig</a></div></div></div><div class="footer-bottom"><p>© 2024 Multi System. جميع الحقوق محفوظة.</p></div></div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

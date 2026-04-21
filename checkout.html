@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إتمام الدفع | MultiSystem</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="checkout-styles.css">
+</head>
+<body>
+
+    <!-- Header -->
+    <header id="header" class="scrolled">
+        <div class="container nav-container">
+            <div class="logo">
+                <i class="fa-solid fa-chart-pie text-gradient"></i>
+                <span class="text-gradient">MultiSystem</span>
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html#home">الرئيسية</a></li>
+                    <li><a href="index.html#pricing">الباقات</a></li>
+                </ul>
+            </nav>
+            <div class="nav-actions">
+                <a href="index.html" class="btn btn-outline">العودة للرئيسية</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Checkout Section -->
+    <section class="checkout-section">
+        <div class="container">
+            <div class="checkout-container">
+                
+                <!-- Order Summary -->
+                <div class="checkout-card order-summary">
+                    <h2>ملخص الطلب</h2>
+                    <div id="package-details">
+                        <div class="package-name" id="pkg-name">جاري التحميل...</div>
+                        <div class="package-price"><span id="pkg-price">0</span> <span>ر.س / شهرياً</span></div>
+                    </div>
+                    
+                    <ul class="summary-list">
+                        <li>
+                            <span>قيمة الاشتراك</span>
+                            <span><span id="subtotal">0</span> ر.س</span>
+                        </li>
+                        <li>
+                            <span>ضريبة القيمة المضافة (15%)</span>
+                            <span><span id="tax">0</span> ر.س</span>
+                        </li>
+                    </ul>
+                    
+                    <div class="summary-total">
+                        <span>الإجمالي المستحق</span>
+                        <span><span id="total">0</span> ر.س</span>
+                    </div>
+                    
+                    <div style="margin-top: 30px; text-align: center; color: var(--text-muted); font-size: 0.85rem;">
+                        <i class="fa-solid fa-shield-halved"></i> دفع آمن وموثق بـ 256-bit SSL
+                    </div>
+                </div>
+
+                <!-- Billing & Payment -->
+                <div class="checkout-card billing-details">
+                    <h2>بيانات الدفع والشركة</h2>
+                    <form id="checkout-form" onsubmit="processPayment(event)">
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="fullName">الاسم الكامل *</label>
+                                <input type="text" id="fullName" class="form-control" required placeholder="أحمد محمد">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">البريد الإلكتروني *</label>
+                                <input type="email" id="email" class="form-control" required placeholder="name@company.com">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="companyName">اسم الشركة / المؤسسة *</label>
+                                <input type="text" id="companyName" class="form-control" required placeholder="شركة الأفق للتقنية">
+                            </div>
+                            <div class="form-group">
+                                <label for="taxNumber">الرقم الضريبي (اختياري)</label>
+                                <input type="text" id="taxNumber" class="form-control" placeholder="300000000000003">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>طريقة الدفع *</label>
+                            <div class="payment-methods">
+                                <div class="payment-method active" onclick="selectPayment(this)">
+                                    <i class="fa-brands fa-cc-visa" style="color: #1a1f71;"></i>
+                                    <span>بطاقة ائتمانية</span>
+                                </div>
+                                <div class="payment-method" onclick="selectPayment(this)">
+                                    <i class="fa-solid fa-credit-card" style="color: #26a69a;"></i>
+                                    <span>مدى (Mada)</span>
+                                </div>
+                                <div class="payment-method" onclick="selectPayment(this)">
+                                    <i class="fa-brands fa-apple" style="color: #fff;"></i>
+                                    <span>Apple Pay</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card Details -->
+                        <div id="card-details">
+                            <div class="form-group">
+                                <label for="cardNumber">رقم البطاقة *</label>
+                                <input type="text" id="cardNumber" class="form-control" required placeholder="0000 0000 0000 0000" maxlength="19">
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="expiry">تاريخ الانتهاء *</label>
+                                    <input type="text" id="expiry" class="form-control" required placeholder="MM/YY" maxlength="5">
+                                </div>
+                                <div class="form-group">
+                                    <label for="cvv">رمز التحقق (CVV) *</label>
+                                    <input type="text" id="cvv" class="form-control" required placeholder="123" maxlength="3">
+                                </div>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary checkout-btn">إتمام الدفع واشتراك</button>
+                    </form>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 MultiSystem. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Parse URL params
+        const urlParams = new URLSearchParams(window.location.search);
+        const pkgName = urlParams.get('package') || 'الباقة الأساسية';
+        const pkgPrice = parseFloat(urlParams.get('price')) || 150;
+
+        // Calculate tax and total
+        const taxRate = 0.15;
+        const tax = pkgPrice * taxRate;
+        const total = pkgPrice + tax;
+
+        // Update DOM
+        document.getElementById('pkg-name').textContent = pkgName;
+        document.getElementById('pkg-price').textContent = pkgPrice;
+        document.getElementById('subtotal').textContent = pkgPrice.toFixed(2);
+        document.getElementById('tax').textContent = tax.toFixed(2);
+        document.getElementById('total').textContent = total.toFixed(2);
+
+        // Payment method selection
+        function selectPayment(element) {
+            document.querySelectorAll('.payment-method').forEach(el => el.classList.remove('active'));
+            element.classList.add('active');
+            
+            // Hide card details if Apple Pay is selected
+            const methodText = element.querySelector('span').textContent;
+            if(methodText.includes('Apple Pay')) {
+                document.getElementById('card-details').style.display = 'none';
+                document.querySelectorAll('#card-details input').forEach(input => input.removeAttribute('required'));
+            } else {
+                document.getElementById('card-details').style.display = 'block';
+                document.querySelectorAll('#card-details input').forEach(input => input.setAttribute('required', 'true'));
+            }
+        }
+
+        // Handle form submission
+        function processPayment(e) {
+            e.preventDefault();
+            const btn = document.querySelector('.checkout-btn');
+            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> جاري معالجة الدفع...';
+            btn.style.opacity = '0.8';
+            btn.disabled = true;
+
+            setTimeout(() => {
+                alert('تم الدفع بنجاح! شكراً لاشتراكك في MultiSystem. سيتم تحويلك الآن للوحة التحكم.');
+                window.location.href = 'index.html';
+            }, 2000);
+        }
+    </script>
+</body>
+</html>

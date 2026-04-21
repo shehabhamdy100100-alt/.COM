@@ -3,213 +3,211 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Multi System - للحلول البرمجية</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        *{font-family:'Cairo',sans-serif;margin:0;padding:0;box-sizing:border-box}
-        html{scroll-behavior:smooth}
-        body{background:#fff;color:#1e293b;line-height:1.6}
-        .container{max-width:1200px;margin:0 auto;padding:0 20px}
-        :root{--primary:#059669;--secondary:#0d9488;--text-dark:#1e293b;--text-light:#64748b;--bg-light:#f8fafc}
-        
-        .btn-primary{background:linear-gradient(135deg,var(--primary),var(--secondary));color:#fff;padding:12px 28px;border-radius:50px;font-weight:600;font-size:15px;border:none;cursor:pointer;transition:all .3s;box-shadow:0 4px 15px rgba(5,150,105,.3)}
-        .btn-primary:hover{transform:scale(1.05);box-shadow:0 8px 25px rgba(5,150,105,.4)}
-        .btn-outline{background:transparent;color:var(--primary);padding:12px 28px;border-radius:50px;font-weight:600;font-size:15px;border:2px solid var(--primary);cursor:pointer;transition:all .3s;width:100%}
-        .btn-outline:hover{background:var(--primary);color:#fff}
-        .btn-white{background:#fff;color:var(--primary);padding:14px 32px;border-radius:50px;font-weight:700;font-size:15px;border:none;cursor:pointer;transition:all .3s;box-shadow:0 4px 15px rgba(0,0,0,.1)}
-        .btn-white:hover{background:#f0fdf4;transform:translateY(-2px)}
-        .btn-glass{background:rgba(255,255,255,.15);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.2);color:#fff;padding:14px 32px;border-radius:50px;font-weight:600;font-size:15px;cursor:pointer;transition:all .3s}
-        .btn-glass:hover{background:rgba(255,255,255,.25)}
-        .w-full{width:100%}
-
-        #header{position:fixed;top:0;left:0;right:0;z-index:1000;padding:16px 0;transition:all .3s}
-        #header.scrolled{background:#fff;box-shadow:0 4px 20px rgba(0,0,0,.1)}
-        #header.scrolled .logo-name{color:var(--text-dark)}
-        #header.scrolled .logo-subtitle{color:var(--text-light)}
-        #header.scrolled .nav-menu a{color:var(--text-dark)}
-        #header.scrolled .mobile-btn span{background:var(--text-dark)}
-        .header-inner{display:flex;align-items:center;justify-content:space-between}
-        .logo{display:flex;align-items:center;gap:12px}
-        .logo-icon{width:48px;height:48px;background:linear-gradient(135deg,var(--primary),var(--secondary));border-radius:12px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:18px;box-shadow:0 4px 15px rgba(5,150,105,.3)}
-        .logo-text{display:flex;flex-direction:column}
-        .logo-name{font-weight:700;font-size:18px;color:#fff;transition:color .3s}
-        .logo-subtitle{font-size:11px;color:#a7f3d0;transition:color .3s}
-        .nav-menu{display:flex;align-items:center;gap:32px}
-        .nav-menu a{color:#fff;text-decoration:none;font-weight:500;font-size:15px;transition:color .3s;position:relative}
-        .nav-menu a:hover{color:#a7f3d0}
-        .nav-menu a::after{content:'';position:absolute;bottom:-4px;right:0;width:0;height:2px;background:#10b981;transition:width .3s}
-        .nav-menu a:hover::after{width:100%}
-        .header-btn{display:block}
-        .mobile-btn{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:5px}
-        .mobile-btn span{width:25px;height:3px;background:#fff;border-radius:2px;transition:all .3s}
-        .mobile-menu{display:none;position:absolute;top:100%;left:0;right:0;background:#fff;padding:20px;box-shadow:0 10px 30px rgba(0,0,0,.1);border-radius:0 0 16px 16px}
-        .mobile-menu.active{display:block}
-        .mobile-menu a{display:block;padding:12px 0;color:var(--text-dark);text-decoration:none;font-weight:500;border-bottom:1px solid #e2e8f0}
-        .mobile-menu a:hover{color:var(--primary)}
-
-        .hero{min-height:100vh;background:linear-gradient(135deg,#059669 0%,#0d9488 50%,#0891b2 100%);display:flex;align-items:center;padding-top:80px;position:relative;overflow:hidden}
-        .hero::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 4v4h2V6h4V4H8V0H6v4zm0 30v4h2v-4h4v-2H8v-4H6v4H0v2h4zm36-8v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zM6 20v-4H4v4H0v2h4v4h2v-4h4v-2H6zm36 0v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zM18 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM36 20v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zM18 20v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");opacity:.5}
-        .hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;position:relative;z-index:1}
-        .hero-content{color:#fff}
-        .hero-badge{display:inline-block;padding:8px 16px;background:rgba(255,255,255,.1);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.2);border-radius:50px;font-size:14px;margin-bottom:24px}
-        .hero-title{font-size:48px;font-weight:800;line-height:1.2;margin-bottom:24px}
-        .hero-accent{display:block;color:#a7f3d0}
-        .hero-desc{font-size:18px;color:#d1fae5;margin-bottom:32px;max-width:500px;line-height:1.8}
-        .hero-buttons{display:flex;gap:16px;margin-bottom:48px;flex-wrap:wrap}
-        .hero-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-        .stat-box{background:rgba(255,255,255,.15);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.2);border-radius:16px;padding:20px;text-align:center}
-        .stat-num{display:block;font-size:28px;font-weight:700;color:#fff}
-        .stat-label{font-size:13px;color:#a7f3d0}
-        .hero-image{animation:float 4s ease-in-out infinite}
-        @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-15px)}}
-        .glass-box{background:rgba(255,255,255,.1);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.2);border-radius:24px;padding:32px}
-        .browser{background:#fff;border-radius:16px;padding:20px;box-shadow:0 20px 50px rgba(0,0,0,.15)}
-        .browser-header{display:flex;gap:8px;margin-bottom:16px}
-        .dot{width:12px;height:12px;border-radius:50%}
-        .dot.red{background:#f87171}
-        .dot.yellow{background:#fbbf24}
-        .dot.green{background:#34d399}
-        .browser-body{display:flex;flex-direction:column;gap:12px}
-        .line{height:16px;background:#d1fae5;border-radius:4px}
-        .line-1{width:75%}
-        .line-2{width:50%}
-        .block{height:80px;background:linear-gradient(135deg,#ecfdf5,#ccfbf1);border-radius:8px}
-        .grid-box{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-        .grid-item{height:64px;background:#d1fae5;border-radius:8px}
-
-        .section-head{text-align:center;margin-bottom:64px}
-        .badge{display:inline-block;padding:8px 16px;background:#d1fae5;color:var(--primary);border-radius:50px;font-size:14px;font-weight:600;margin-bottom:16px}
-        .section-title{font-size:36px;font-weight:700;color:var(--text-dark);margin-bottom:16px}
-        .section-desc{font-size:16px;color:var(--text-light);max-width:600px;margin:0 auto}
-
-        .features{padding:100px 0;background:var(--bg-light)}
-        .features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px}
-        .feature-card{background:#fff;border-radius:16px;padding:28px;box-shadow:0 10px 40px rgba(0,0,0,.08);transition:all .3s}
-        .feature-card:hover{transform:translateY(-5px);box-shadow:0 20px 50px rgba(0,0,0,.12)}
-        .feature-icon{width:56px;height:56px;background:linear-gradient(135deg,var(--primary),var(--secondary));border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:20px}
-        .feature-icon svg{width:28px;height:28px;color:#fff}
-        .feature-card h3{font-size:20px;font-weight:700;color:var(--text-dark);margin-bottom:10px}
-        .feature-card p{font-size:14px;color:var(--text-light);line-height:1.7}
-
-        .pricing{padding:100px 0;background:#fff}
-        .pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;max-width:1000px;margin:0 auto;align-items:start}
-        .price-card{background:#fff;border-radius:20px;padding:32px;border:2px solid #e2e8f0;transition:all .3s;position:relative}
-        .price-card:hover{transform:translateY(-10px);box-shadow:0 25px 60px rgba(0,0,0,.15)}
-        .price-card.popular{border:2px solid var(--primary);transform:scale(1.05)}
-        .price-card.popular:hover{transform:scale(1.05) translateY(-10px)}
-        .popular-tag{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,var(--primary),var(--secondary));color:#fff;padding:6px 20px;border-radius:20px;font-size:12px;font-weight:600}
-        .price-head{text-align:center;margin-bottom:24px}
-        .price-head h3{font-size:20px;font-weight:700;color:var(--text-dark);margin-bottom:4px}
-        .price-head span{font-size:13px;color:var(--text-light)}
-        .price-amount{text-align:center;margin-bottom:24px}
-        .price-amount strong{font-size:40px;font-weight:700;color:var(--text-dark)}
-        .price-amount strong.green{color:var(--primary)}
-        .price-amount span{font-size:14px;color:var(--text-light)}
-        .price-features{list-style:none;margin-bottom:24px}
-        .price-features li{display:flex;align-items:center;gap:12px;padding:12px 0;color:var(--text-dark);font-size:14px;border-bottom:1px solid #f1f5f9}
-        .price-features li:last-child{border-bottom:none}
-        .check{color:var(--primary);font-weight:700}
-
-        .testimonials{padding:100px 0;background:var(--bg-light)}
-        .testimonials-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px}
-        .testimonial-card{background:#fff;border-radius:20px;padding:28px;box-shadow:0 10px 40px rgba(0,0,0,.08);transition:all .3s}
-        .testimonial-card:hover{box-shadow:0 15px 40px rgba(0,0,0,.1)}
-        .stars{color:#fbbf24;font-size:18px;margin-bottom:16px}
-        .testimonial-text{font-size:15px;color:var(--text-dark);line-height:1.8;margin-bottom:20px}
-        .author{display:flex;align-items:center;gap:12px}
-        .author-avatar{width:48px;height:48px;background:linear-gradient(135deg,var(--primary),var(--secondary));border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:18px}
-        .author-info h4{font-size:15px;font-weight:600;color:var(--text-dark)}
-        .author-info span{font-size:13px;color:var(--text-light)}
-
-        .contact{padding:100px 0;background:#fff}
-        .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}
-        .contact-info h2{font-size:32px;font-weight:700;color:var(--text-dark);margin-bottom:16px}
-        .contact-info>p{font-size:16px;color:var(--text-light);margin-bottom:32px}
-        .contact-items{display:flex;flex-direction:column;gap:24px}
-        .contact-item{display:flex;align-items:flex-start;gap:16px}
-        .contact-icon{width:48px;height:48px;background:#d1fae5;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
-        .contact-item h4{font-size:15px;font-weight:600;color:var(--text-dark);margin-bottom:4px}
-        .contact-item p{font-size:14px;color:var(--text-light)}
-        .contact-form-box{background:var(--bg-light);border-radius:20px;padding:32px}
-        .form-group{margin-bottom:20px}
-        .form-group label{display:block;font-size:14px;font-weight:600;color:var(--text-dark);margin-bottom:8px}
-        .form-group input,.form-group textarea{width:100%;padding:14px 16px;border:2px solid #e2e8f0;border-radius:12px;font-size:14px;transition:border-color .3s;outline:none;font-family:'Cairo',sans-serif}
-        .form-group input:focus,.form-group textarea:focus{border-color:var(--primary)}
-        .form-group textarea{min-height:120px;resize:vertical}
-
-        .footer{background:linear-gradient(135deg,#059669 0%,#0d9488 50%,#0891b2 100%);padding:80px 0 30px;color:#fff}
-        .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}
-        .footer-logo{width:48px;height:48px;background:rgba(255,255,255,.2);border-radius:12px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:18px;margin-bottom:16px}
-        .footer-brand h3{font-size:20px;font-weight:700;margin-bottom:4px}
-        .footer-brand>p{font-size:13px;color:#a7f3d0;margin-bottom:16px}
-        .footer-desc{font-size:14px;color:#d1fae5;line-height:1.7}
-        .footer-links h4{font-size:16px;font-weight:600;margin-bottom:20px}
-        .footer-links a{display:block;color:#d1fae5;text-decoration:none;font-size:14px;margin-bottom:12px;transition:color .3s}
-        .footer-links a:hover{color:#fff}
-        .footer-social h4{font-size:16px;font-weight:600;margin-bottom:20px}
-        .social-icons{display:flex;gap:12px}
-        .social-icon{width:40px;height:40px;background:rgba(255,255,255,.1);border-radius:10px;display:flex;align-items:center;justify-content:center;color:#fff;text-decoration:none;font-size:14px;font-weight:600;transition:background .3s}
-        .social-icon:hover{background:rgba(255,255,255,.2)}
-        .footer-bottom{border-top:1px solid rgba(255,255,255,.1);padding-top:30px;text-align:center}
-        .footer-bottom p{font-size:14px;color:#a7f3d0}
-
-        @media(max-width:1024px){.hero-grid{grid-template-columns:1fr;text-align:center}.hero-content{order:1}.hero-image{order:2;display:none}.hero-desc{margin:0 auto 32px}.hero-buttons{justify-content:center}.features-grid,.pricing-grid,.testimonials-grid{grid-template-columns:repeat(2,1fr)}.pricing-grid{gap:20px}.price-card.popular{transform:scale(1)}.contact-grid{grid-template-columns:1fr}.footer-grid{grid-template-columns:repeat(2,1fr)}}
-        @media(max-width:768px){.nav-menu{display:none}.header-btn{display:none}.mobile-btn{display:flex}.hero-title{font-size:32px}.hero-stats{grid-template-columns:1fr}.features-grid,.pricing-grid,.testimonials-grid{grid-template-columns:1fr}.section-title{font-size:28px}.footer-grid{grid-template-columns:1fr;text-align:center}.footer-logo{margin:0 auto 16px}.social-icons{justify-content:center}}
-    </style>
+    <title>MultiSystem | البرنامج المحاسبي الأقوى لإدارة أعمالك</title>
+    <meta name="description" content="نظام MultiSystem المحاسبي، يوفر لك حلولاً مالية متكاملة وباقات متنوعة تناسب حجم عملك. تصميم عصري واحترافية لا مثيل لها.">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+
+    <!-- Header -->
     <header id="header">
-        <div class="container">
-            <div class="header-inner">
-                <div class="logo">
-                    <div class="logo-icon">MS</div>
-                    <div class="logo-text">
-                        <span class="logo-name">Multi System</span>
-                        <span class="logo-subtitle">للحلول البرمجية</span>
-                    </div>
-                </div>
-                <nav class="nav-menu">
-                    <a href="#home">الرئيسية</a>
-                    <a href="#features">المميزات</a>
-                    <a href="#pricing">الباقات</a>
-                    <a href="#testimonials">آراء العملاء</a>
-                    <a href="#contact">تواصل معنا</a>
-                </nav>
-                <button class="btn-primary header-btn">ابدأ الآن</button>
-                <button class="mobile-btn" id="mobileBtn"><span></span><span></span><span></span></button>
+        <div class="container nav-container">
+            <div class="logo">
+                <i class="fa-solid fa-chart-pie text-gradient"></i>
+                <span class="text-gradient">MultiSystem</span>
             </div>
-            <div class="mobile-menu" id="mobileMenu">
-                <a href="#home">الرئيسية</a>
-                <a href="#features">المميزات</a>
-                <a href="#pricing">الباقات</a>
-                <a href="#testimonials">آراء العملاء</a>
-                <a href="#contact">تواصل معنا</a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#home">الرئيسية</a></li>
+                    <li><a href="#features">المميزات</a></li>
+                    <li><a href="#pricing">الباقات</a></li>
+                    <li><a href="#testimonials">آراء العملاء</a></li>
+                </ul>
+            </nav>
+            <div class="nav-actions">
+                <a href="#contact" class="btn btn-outline">تسجيل الدخول</a>
+                <a href="#pricing" class="btn btn-primary">ابدأ الآن</a>
             </div>
         </div>
     </header>
 
+    <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="container">
-            <div class="hero-grid">
-                <div class="hero-content">
-                    <span class="hero-badge">🚀 نظام محاسبي متكامل</span>
-                    <h1 class="hero-title">نظام محاسبي<span class="hero-accent">متكامل لأعمالك</span></h1>
-                    <p class="hero-desc">إدارة مالية احترافية، فواتير إلكترونية، تقارير ذكية، ومتابعة المخزون - كل ما تحتاجه في منصة واحدة سهلة الاستخدام.</p>
-                    <div class="hero-buttons">
-                        <button class="btn-white">ابدأ تجربة مجانية</button>
-                        <button class="btn-glass">شاهد الفيديو</button>
+            <div class="hero-content">
+                <div class="hero-tag">✨ الجيل الجديد من الأنظمة المحاسبية</div>
+                <h1>نظام محاسبي متكامل <br> يلبي <span class="text-gradient">طموحاتك</span></h1>
+                <p>الخيار الأول لإدارة أعمالك بذكاء واحترافية. يوفر لك MultiSystem تقارير دقيقة، أمان تام لبياناتك، وواجهة مستخدم عصرية تجعل من الإدارة المالية متعة حقيقية.</p>
+                <div class="hero-actions">
+                    <a href="#pricing" class="btn btn-primary">اختر باقتك</a>
+                    <a href="#demo" class="btn btn-outline"><i class="fa-solid fa-play"></i> شاهد العرض التجريبي</a>
+                </div>
+            </div>
+            <div class="hero-image-wrapper">
+                <img src="assets/dashboard.png" alt="MultiSystem Dashboard Mockup">
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <div class="section-header">
+                <h2>لماذا تختار <span class="text-gradient">MultiSystem</span>؟</h2>
+                <p>صُمم برنامجنا بأحدث التقنيات ليوفر لك كل ما تحتاجه لإدارة شركتك بنجاح</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fa-solid fa-file-invoice-dollar"></i>
                     </div>
-                    <div class="hero-stats">
-                        <div class="stat-box"><span class="stat-num">500+</span><span class="stat-label">عميل نشط</span></div>
-                        <div class="stat-box"><span class="stat-num">99.9%</span><span class="stat-label">وقت التشغيل</span></div>
-                        <div class="stat-box"><span class="stat-num">24/7</span><span class="stat-label">دعم فني</span></div>
+                    <h3>فواتير احترافية</h3>
+                    <p>أنشئ فواتير ضريبية متوافقة مع متطلبات الهيئات الزكوية، مع إمكانية التخصيص وإرسالها للعملاء بضغطة زر.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fa-solid fa-chart-line"></i>
+                    </div>
+                    <h3>تقارير مالية شاملة</h3>
+                    <p>احصل على رؤية واضحة لتدفقاتك النقدية وأرباحك من خلال تقارير تفصيلية ورسوم بيانية دقيقة ولحظية.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fa-solid fa-boxes-stacked"></i>
+                    </div>
+                    <h3>إدارة المخزون بذكاء</h3>
+                    <p>تتبع مخزونك بدقة، احصل على تنبيهات عند انخفاض الكميات، وقم بإدارة المستودعات المتعددة بسهولة تامة.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <h3>أمان وموثوقية</h3>
+                    <p>بياناتك المالية في أمان تام بفضل أحدث تقنيات التشفير والنسخ الاحتياطي السحابي التلقائي.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section (Packages) -->
+    <section id="pricing" class="pricing">
+        <div class="container">
+            <div class="section-header">
+                <h2>باقات تناسب <span class="text-gradient">جميع الأعمال</span></h2>
+                <p>اختر الباقة التي تلبي احتياجات شركتك، بدون رسوم خفية</p>
+            </div>
+            <div class="pricing-grid">
+                
+                <!-- Basic Plan -->
+                <div class="price-card">
+                    <div class="price-header">
+                        <h3>الباقة الأساسية</h3>
+                        <div class="price-value">
+                            <span class="price">150</span>
+                            <span class="currency">ر.س</span>
+                        </div>
+                        <div class="period">شهرياً</div>
+                    </div>
+                    <ul class="features-list">
+                        <li><i class="fa-solid fa-check"></i> مستخدم واحد</li>
+                        <li><i class="fa-solid fa-check"></i> 100 فاتورة شهرياً</li>
+                        <li><i class="fa-solid fa-check"></i> تقارير أساسية</li>
+                        <li><i class="fa-solid fa-check"></i> دعم فني بالبريد</li>
+                    </ul>
+                    <a href="checkout.html?package=الباقة الأساسية&price=150" class="btn btn-outline">اشترك الآن</a>
+                </div>
+
+                <!-- Pro Plan -->
+                <div class="price-card popular">
+                    <div class="popular-badge">الأكثر طلباً</div>
+                    <div class="price-header">
+                        <h3>الباقة الاحترافية</h3>
+                        <div class="price-value">
+                            <span class="price">390</span>
+                            <span class="currency">ر.س</span>
+                        </div>
+                        <div class="period">شهرياً</div>
+                    </div>
+                    <ul class="features-list">
+                        <li><i class="fa-solid fa-check"></i> 5 مستخدمين</li>
+                        <li><i class="fa-solid fa-check"></i> فواتير غير محدودة</li>
+                        <li><i class="fa-solid fa-check"></i> إدارة المخزون</li>
+                        <li><i class="fa-solid fa-check"></i> تقارير متقدمة</li>
+                        <li><i class="fa-solid fa-check"></i> دعم فني على مدار الساعة</li>
+                    </ul>
+                    <a href="checkout.html?package=الباقة الاحترافية&price=390" class="btn btn-primary">اشترك الآن</a>
+                </div>
+
+                <!-- Premium Plan -->
+                <div class="price-card">
+                    <div class="price-header">
+                        <h3>الباقة المتقدمة</h3>
+                        <div class="price-value">
+                            <span class="price">750</span>
+                            <span class="currency">ر.س</span>
+                        </div>
+                        <div class="period">شهرياً</div>
+                    </div>
+                    <ul class="features-list">
+                        <li><i class="fa-solid fa-check"></i> مستخدمين غير محدود</li>
+                        <li><i class="fa-solid fa-check"></i> فواتير غير محدودة</li>
+                        <li><i class="fa-solid fa-check"></i> مستودعات وفروع متعددة</li>
+                        <li><i class="fa-solid fa-check"></i> نقاط البيع (POS)</li>
+                        <li><i class="fa-solid fa-check"></i> مدير حساب شخصي</li>
+                    </ul>
+                    <a href="checkout.html?package=الباقة المتقدمة&price=750" class="btn btn-outline">اشترك الآن</a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <h2>شركاء <span class="text-gradient">النجاح</span></h2>
+                <p>آراء عملائنا الذين وثقوا في MultiSystem لإدارة أعمالهم</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="stars">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"برنامج MultiSystem أحدث نقلة نوعية في إدارة حسابات شركتنا. الواجهة سهلة جداً والتقارير دقيقة وتوفر علينا الكثير من الوقت والتعب. أنصح به بشدة."</p>
+                    <div class="client-info">
+                        <div class="client-avatar">أ</div>
+                        <div class="client-details">
+                            <h4>أحمد محمد</h4>
+                            <p>مدير مالي، شركة الأفق</p>
+                        </div>
                     </div>
                 </div>
-                <div class="hero-image">
-                    <div class="glass-box">
-                        <div class="browser">
-                            <div class="browser-header"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
-                            <div class="browser-body"><div class="line line-1"></div><div class="line line-2"></div><div class="block"></div><div class="grid-box"><div class="grid-item"></div><div class="grid-item"></div><div class="grid-item"></div></div></div>
+                <div class="testimonial-card">
+                    <div class="stars">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i>
+                    </div>
+                    <p class="testimonial-text">"الدعم الفني رائع والاستجابة سريعة جداً. البرنامج يوفر ميزة الفوترة الإلكترونية بشكل يتوافق مع متطلبات هيئة الزكاة والدخل بسلاسة."</p>
+                    <div class="client-info">
+                        <div class="client-avatar">خ</div>
+                        <div class="client-details">
+                            <h4>خالد عبد الرحمن</h4>
+                            <p>صاحب مؤسسة تجارية</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"انتقلنا من نظام قديم إلى MultiSystem، ولم نتوقع أن يكون الانتقال بهذه السهولة. إدارة المخزون ونقاط البيع ممتازة وربط الفروع جعل الإدارة مركزية وفعالة."</p>
+                    <div class="client-info">
+                        <div class="client-avatar">س</div>
+                        <div class="client-details">
+                            <h4>سارة عبد الله</h4>
+                            <p>مديرة عمليات</p>
                         </div>
                     </div>
                 </div>
@@ -217,61 +215,41 @@
         </div>
     </section>
 
-    <section id="features" class="features">
+    <!-- Footer -->
+    <footer>
         <div class="container">
-            <div class="section-head"><span class="badge">مميزات النظام</span><h2 class="section-title">كل ما تحتاجه لإدارة أعمالك</h2><p class="section-desc">نظام متكامل يجمع كل أدوات الإدارة المالية والمحاسبية في مكان واحد</p></div>
-            <div class="features-grid">
-                <div class="feature-card"><div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg></div><h3>إدارة الحسابات</h3><p>دفتر الأستاذ العام، الحسابات المساعدة، والتقارير المالية الشاملة</p></div>
-                <div class="feature-card"><div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg></div><h3>الفواتير الإلكترونية</h3><p>إنشاء وإرسال فواتير احترافية مع QR Code وتتبع حالة الدفع</p></div>
-                <div class="feature-card"><div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg></div><h3>إدارة المخزون</h3><p>تتبع المنتجات، تنبيهات نقص المخزون، وإدارة المستودعات</p></div>
-                <div class="feature-card"><div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg></div><h3>إدارة العملاء</h3><p>قاعدة بيانات العملاء، سجل التعاملات، وتقارير التحصيل</p></div>
-                <div class="feature-card"><div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg></div><h3>التقارير الذكية</h3><p>تقارير تفصيلية، رسوم بيانية، وتحليلات لاتخاذ قرارات أفضل</p></div>
-                <div class="feature-card"><div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg></div><h3>أمان عالي</h3><p>تشفير البيانات، نسخ احتياطي تلقائي، وصلاحيات المستخدمين</p></div>
+            <div class="footer-content">
+                <div class="footer-about">
+                    <div class="logo">
+                        <i class="fa-solid fa-chart-pie text-gradient"></i>
+                        <span class="text-gradient">MultiSystem</span>
+                    </div>
+                    <p>نقدم لك أفضل الحلول البرمجية والمحاسبية التي ترتقي بأعمالك إلى آفاق جديدة من الاحترافية والدقة.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>روابط هامة</h4>
+                    <ul>
+                        <li><a href="#home">الرئيسية</a></li>
+                        <li><a href="#features">المميزات</a></li>
+                        <li><a href="#pricing">الباقات</a></li>
+                        <li><a href="#">الشروط والأحكام</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>تواصل معنا</h4>
+                    <ul>
+                        <li><a href="#"><i class="fa-brands fa-whatsapp"></i> +966 50 123 4567</a></li>
+                        <li><a href="#"><i class="fa-regular fa-envelope"></i> info@multisystem.com</a></li>
+                        <li><a href="#"><i class="fa-solid fa-location-dot"></i> الرياض، المملكة العربية السعودية</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 MultiSystem. جميع الحقوق محفوظة.</p>
             </div>
         </div>
-    </section>
-
-    <section id="pricing" class="pricing">
-        <div class="container">
-            <div class="section-head"><span class="badge">باقات الاشتراك</span><h2 class="section-title">اختر الباقة المناسبة لك</h2><p class="section-desc">باقات مرنة تناسب جميع أحجام الأعمال مع ضمان استرداد خلال 14 يوم</p></div>
-            <div class="pricing-grid">
-                <div class="price-card"><div class="price-head"><h3>الباقة الأساسية</h3><span>للمشاريع الصغيرة</span></div><div class="price-amount"><strong>199</strong><span>ريال / شهر</span></div><ul class="price-features"><li><span class="check">✓</span> مستخدم واحد</li><li><span class="check">✓</span> 500 فاتورة شهرياً</li><li><span class="check">✓</span> إدارة المخزون</li><li><span class="check">✓</span> تقارير أساسية</li><li><span class="check">✓</span> دعم فني بالبريد</li></ul><button class="btn-outline">اشترك الآن</button></div>
-                <div class="price-card popular"><span class="popular-tag">الأكثر طلباً</span><div class="price-head"><h3>الباقة الاحترافية</h3><span>للمؤسسات المتوسطة</span></div><div class="price-amount"><strong class="green">399</strong><span>ريال / شهر</span></div><ul class="price-features"><li><span class="check">✓</span> 5 مستخدمين</li><li><span class="check">✓</span> فواتير غير محدودة</li><li><span class="check">✓</span> إدارة الفروع</li><li><span class="check">✓</span> تقارير متقدمة</li><li><span class="check">✓</span> دعم فني 24/7</li></ul><button class="btn-primary w-full">اشترك الآن</button></div>
-                <div class="price-card"><div class="price-head"><h3>الباقة المؤسسية</h3><span>للشركات الكبيرة</span></div><div class="price-amount"><strong>799</strong><span>ريال / شهر</span></div><ul class="price-features"><li><span class="check">✓</span> مستخدمين غير محدود</li><li><span class="check">✓</span> فواتير غير محدودة</li><li><span class="check">✓</span> API مخصص</li><li><span class="check">✓</span> تقارير مخصصة</li><li><span class="check">✓</span> مدير حساب مخصص</li></ul><button class="btn-outline">اشترك الآن</button></div>
-            </div>
-        </div>
-    </section>
-
-    <section id="testimonials" class="testimonials">
-        <div class="container">
-            <div class="section-head"><span class="badge">آراء العملاء</span><h2 class="section-title">ماذا يقول عملاؤنا</h2><p class="section-desc">آراء حقيقية من عملاء يستخدمون نظامنا يومياً</p></div>
-            <div class="testimonials-grid">
-                <div class="testimonial-card"><div class="stars">★★★★★</div><p class="testimonial-text">نظام رائع ساعدنا في تنظيم حساباتنا وتوفير وقت كبير. الدعم الفني ممتاز والتحديثات مستمرة.</p><div class="author"><div class="author-avatar">أ</div><div class="author-info"><h4>أحمد محمد</h4><span>مدير شركة تجارية</span></div></div></div>
-                <div class="testimonial-card"><div class="stars">★★★★★</div><p class="testimonial-text">أفضل نظام محاسبي استخدمته. سهولة في التعامل وتقارير شاملة تساعد في اتخاذ القرارات.</p><div class="author"><div class="author-avatar">س</div><div class="author-info"><h4>سارة أحمد</h4><span>محاسبة قانونية</span></div></div></div>
-                <div class="testimonial-card"><div class="stars">★★★★★</div><p class="testimonial-text">انتقلنا من نظام يدوي إلى Multi System ووفرنا 70% من الوقت. أنصح به بشدة!</p><div class="author"><div class="author-avatar">م</div><div class="author-info"><h4>محمد علي</h4><span>صاحب مصنع</span></div></div></div>
-            </div>
-        </div>
-    </section>
-
-    <section id="contact" class="contact">
-        <div class="container">
-            <div class="contact-grid">
-                <div class="contact-info"><h2>تواصل معنا</h2><p>نحن هنا لمساعدتك. تواصل معنا وسنرد عليك في أقرب وقت.</p><div class="contact-items"><div class="contact-item"><div class="contact-icon">📍</div><div><h4>العنوان</h4><p>الرياض، المملكة العربية السعودية</p></div></div><div class="contact-item"><div class="contact-icon">📞</div><div><h4>الهاتف</h4><p dir="ltr">+966 50 123 4567</p></div></div><div class="contact-item"><div class="contact-icon">✉️</div><div><h4>البريد الإلكتروني</h4><p>info@multisystem.sa</p></div></div><div class="contact-item"><div class="contact-icon">🕐</div><div><h4>ساعات العمل</h4><p>الأحد - الخميس: 9 صباحاً - 6 مساءً</p></div></div></div></div>
-                <div class="contact-form-box"><form id="contactForm"><div class="form-group"><label>الاسم الكامل</label><input type="text" placeholder="أدخل اسمك"></div><div class="form-group"><label>البريد الإلكتروني</label><input type="email" placeholder="أدخل بريدك الإلكتروني"></div><div class="form-group"><label>رقم الجوال</label><input type="tel" placeholder="أدخل رقم جوالك"></div><div class="form-group"><label>الرسالة</label><textarea placeholder="اكتب رسالتك هنا..."></textarea></div><button type="submit" class="btn-primary w-full">إرسال الرسالة</button></form></div>
-            </div>
-        </div>
-    </section>
-
-    <footer class="footer">
-        <div class="container"><div class="footer-grid"><div class="footer-brand"><div class="footer-logo">MS</div><h3>Multi System</h3><p>للحلول البرمجية</p><p class="footer-desc">نظام محاسبي متكامل يساعدك على إدارة أعمالك بكفاءة عالية وتحقيق النمو المستمر.</p></div><div class="footer-links"><h4>روابط سريعة</h4><a href="#home">الرئيسية</a><a href="#features">المميزات</a><a href="#pricing">الباقات</a><a href="#contact">تواصل معنا</a></div><div class="footer-links"><h4>الدعم</h4><a href="#">مركز المساعدة</a><a href="#">الأسئلة الشائعة</a><a href="#">سياسة الخصوصية</a><a href="#">الشروط والأحكام</a></div><div class="footer-social"><h4>تابعنا</h4><div class="social-icons"><a href="#" class="social-icon">f</a><a href="#" class="social-icon">t</a><a href="#" class="social-icon">in</a><a href="#" class="social-icon">ig</a></div></div></div><div class="footer-bottom"><p>© 2024 Multi System. جميع الحقوق محفوظة.</p></div></div>
     </footer>
 
-    <script>
-        window.addEventListener('scroll',function(){var h=document.getElementById('header');if(window.scrollY>50){h.classList.add('scrolled')}else{h.classList.remove('scrolled')}});
-        document.getElementById('mobileBtn').addEventListener('click',function(){document.getElementById('mobileMenu').classList.toggle('active')});
-        document.querySelectorAll('.mobile-menu a').forEach(function(a){a.addEventListener('click',function(){document.getElementById('mobileMenu').classList.remove('active')})});
-        document.querySelectorAll('a[href^="#"]').forEach(function(a){a.addEventListener('click',function(e){e.preventDefault();var t=document.querySelector(this.getAttribute('href'));if(t){t.scrollIntoView({behavior:'smooth',block:'start'})}})});
-        document.getElementById('contactForm').addEventListener('submit',function(e){e.preventDefault();alert('شكراً لتواصلك معنا! سنرد عليك في أقرب وقت.');this.reset()});
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>

@@ -2,254 +2,62 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MultiSystem | البرنامج المحاسبي الأقوى لإدارة أعمالك</title>
-    <meta name="description" content="نظام MultiSystem المحاسبي، يوفر لك حلولاً مالية متكاملة وباقات متنوعة تناسب حجم عملك. تصميم عصري واحترافية لا مثيل لها.">
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <title>الآلة الحاسبة</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="manifest" href="manifest.json">
 </head>
 <body>
-
-    <!-- Header -->
-    <header id="header">
-        <div class="container nav-container">
-            <div class="logo">
-                <i class="fa-solid fa-chart-pie text-gradient"></i>
-                <span class="text-gradient">MultiSystem</span>
-            </div>
-            <nav>
-                <ul class="nav-links">
-                    <li><a href="#home">الرئيسية</a></li>
-                    <li><a href="#features">المميزات</a></li>
-                    <li><a href="#pricing">الباقات</a></li>
-                    <li><a href="#testimonials">آراء العملاء</a></li>
-                </ul>
-            </nav>
-            <div class="nav-actions">
-                <a href="login.html" id="login-btn" class="btn btn-outline"><i class="fa-solid fa-user"></i> تسجيل الدخول</a>
-                <a href="#pricing" class="btn btn-primary">ابدأ الآن</a>
-            </div>
+    <div class="calculator">
+        <div class="header">
+            <h1>ولا يا حرامي ... أنا يتيم</h1>
         </div>
-    </header>
-
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <div class="hero-tag">✨ الجيل الجديد من الأنظمة المحاسبية</div>
-                <h1>نظام محاسبي متكامل <br> يلبي <span class="text-gradient">طموحاتك</span></h1>
-                <p>الخيار الأول لإدارة أعمالك بذكاء واحترافية. يوفر لك MultiSystem تقارير دقيقة، أمان تام لبياناتك، وواجهة مستخدم عصرية تجعل من الإدارة المالية متعة حقيقية.</p>
-                <div class="hero-actions">
-                    <a href="#pricing" class="btn btn-primary">اختر باقتك</a>
-                    <a href="#demo" class="btn btn-outline"><i class="fa-solid fa-play"></i> شاهد العرض التجريبي</a>
-                </div>
-            </div>
-            <div class="hero-image-wrapper">
-                <img src="assets/dashboard.png" alt="MultiSystem Dashboard Mockup">
-            </div>
+        
+        <div class="display">
+            <div class="history" id="history"></div>
+            <div class="current" id="display">0</div>
         </div>
-    </section>
-
-    <!-- Features Section -->
-    <section id="features" class="features">
-        <div class="container">
-            <div class="section-header">
-                <h2>لماذا تختار <span class="text-gradient">MultiSystem</span>؟</h2>
-                <p>صُمم برنامجنا بأحدث التقنيات ليوفر لك كل ما تحتاجه لإدارة شركتك بنجاح</p>
-            </div>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fa-solid fa-file-invoice-dollar"></i>
-                    </div>
-                    <h3>فواتير احترافية</h3>
-                    <p>أنشئ فواتير ضريبية متوافقة مع متطلبات الهيئات الزكوية، مع إمكانية التخصيص وإرسالها للعملاء بضغطة زر.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fa-solid fa-chart-line"></i>
-                    </div>
-                    <h3>تقارير مالية شاملة</h3>
-                    <p>احصل على رؤية واضحة لتدفقاتك النقدية وأرباحك من خلال تقارير تفصيلية ورسوم بيانية دقيقة ولحظية.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fa-solid fa-boxes-stacked"></i>
-                    </div>
-                    <h3>إدارة المخزون بذكاء</h3>
-                    <p>تتبع مخزونك بدقة، احصل على تنبيهات عند انخفاض الكميات، وقم بإدارة المستودعات المتعددة بسهولة تامة.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fa-solid fa-shield-halved"></i>
-                    </div>
-                    <h3>أمان وموثوقية</h3>
-                    <p>بياناتك المالية في أمان تام بفضل أحدث تقنيات التشفير والنسخ الاحتياطي السحابي التلقائي.</p>
-                </div>
-            </div>
+        
+        <button class="backspace" id="backspace">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 4H8l-7 8 7 8h13a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2z"></path>
+                <line x1="18" y1="9" x2="12" y2="15"></line>
+                <line x1="12" y1="9" x2="18" y2="15"></line>
+            </svg>
+            <span>مسح رقم</span>
+        </button>
+        
+        <div class="buttons">
+            <button class="btn btn-red" data-action="clear">C</button>
+            <button class="btn btn-gray" data-action="toggle">±</button>
+            <button class="btn btn-gray" data-action="percent">%</button>
+            <button class="btn btn-orange" data-action="operator" data-value="÷">÷</button>
+            
+            <button class="btn btn-dark" data-action="digit" data-value="7">7</button>
+            <button class="btn btn-dark" data-action="digit" data-value="8">8</button>
+            <button class="btn btn-dark" data-action="digit" data-value="9">9</button>
+            <button class="btn btn-orange" data-action="operator" data-value="×">×</button>
+            
+            <button class="btn btn-dark" data-action="digit" data-value="4">4</button>
+            <button class="btn btn-dark" data-action="digit" data-value="5">5</button>
+            <button class="btn btn-dark" data-action="digit" data-value="6">6</button>
+            <button class="btn btn-orange" data-action="operator" data-value="-">−</button>
+            
+            <button class="btn btn-dark" data-action="digit" data-value="1">1</button>
+            <button class="btn btn-dark" data-action="digit" data-value="2">2</button>
+            <button class="btn btn-dark" data-action="digit" data-value="3">3</button>
+            <button class="btn btn-orange" data-action="operator" data-value="+">+</button>
+            
+            <button class="btn btn-dark span-2" data-action="digit" data-value="0">0</button>
+            <button class="btn btn-dark" data-action="decimal">.</button>
+            <button class="btn btn-green" data-action="equals">=</button>
         </div>
-    </section>
-
-    <!-- Pricing Section (Packages) -->
-    <section id="pricing" class="pricing">
-        <div class="container">
-            <div class="section-header">
-                <h2>باقات تناسب <span class="text-gradient">جميع الأعمال</span></h2>
-                <p>اختر الباقة التي تلبي احتياجات شركتك، بدون رسوم خفية</p>
-            </div>
-            <div class="pricing-grid">
-                
-                <!-- Basic Plan -->
-                <div class="price-card">
-                    <div class="price-header">
-                        <h3>الباقة الأساسية</h3>
-                        <div class="price-value">
-                            <span class="price">150</span>
-                            <span class="currency">ج.م</span>
-                        </div>
-                        <div class="period">شهرياً</div>
-                    </div>
-                    <ul class="features-list">
-                        <li><i class="fa-solid fa-check"></i> مستخدم واحد</li>
-                        <li><i class="fa-solid fa-check"></i> 100 فاتورة شهرياً</li>
-                        <li><i class="fa-solid fa-check"></i> تقارير أساسية</li>
-                        <li><i class="fa-solid fa-check"></i> دعم فني بالبريد</li>
-                    </ul>
-                    <a href="checkout.html?package=الباقة الأساسية&price=150" class="btn btn-outline">اشترك الآن</a>
-                </div>
-
-                <!-- Pro Plan -->
-                <div class="price-card popular">
-                    <div class="popular-badge">الأكثر طلباً</div>
-                    <div class="price-header">
-                        <h3>الباقة الاحترافية</h3>
-                        <div class="price-value">
-                            <span class="price">390</span>
-                            <span class="currency">ج.م</span>
-                        </div>
-                        <div class="period">شهرياً</div>
-                    </div>
-                    <ul class="features-list">
-                        <li><i class="fa-solid fa-check"></i> 5 مستخدمين</li>
-                        <li><i class="fa-solid fa-check"></i> فواتير غير محدودة</li>
-                        <li><i class="fa-solid fa-check"></i> إدارة المخزون</li>
-                        <li><i class="fa-solid fa-check"></i> تقارير متقدمة</li>
-                        <li><i class="fa-solid fa-check"></i> دعم فني على مدار الساعة</li>
-                    </ul>
-                    <a href="checkout.html?package=الباقة الاحترافية&price=390" class="btn btn-primary">اشترك الآن</a>
-                </div>
-
-                <!-- Premium Plan -->
-                <div class="price-card">
-                    <div class="price-header">
-                        <h3>الباقة المتقدمة</h3>
-                        <div class="price-value">
-                            <span class="price">750</span>
-                            <span class="currency">ج.م</span>
-                        </div>
-                        <div class="period">شهرياً</div>
-                    </div>
-                    <ul class="features-list">
-                        <li><i class="fa-solid fa-check"></i> مستخدمين غير محدود</li>
-                        <li><i class="fa-solid fa-check"></i> فواتير غير محدودة</li>
-                        <li><i class="fa-solid fa-check"></i> مستودعات وفروع متعددة</li>
-                        <li><i class="fa-solid fa-check"></i> نقاط البيع (POS)</li>
-                        <li><i class="fa-solid fa-check"></i> مدير حساب شخصي</li>
-                    </ul>
-                    <a href="checkout.html?package=الباقة المتقدمة&price=750" class="btn btn-outline">اشترك الآن</a>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonials Section -->
-    <section id="testimonials" class="testimonials">
-        <div class="container">
-            <div class="section-header">
-                <h2>شركاء <span class="text-gradient">النجاح</span></h2>
-                <p>آراء عملائنا الذين وثقوا في MultiSystem لإدارة أعمالهم</p>
-            </div>
-            <div class="testimonials-grid">
-                <div class="testimonial-card">
-                    <div class="stars">
-                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                    </div>
-                    <p class="testimonial-text">"برنامج MultiSystem أحدث نقلة نوعية في إدارة حسابات شركتنا. الواجهة سهلة جداً والتقارير دقيقة وتوفر علينا الكثير من الوقت والتعب. أنصح به بشدة."</p>
-                    <div class="client-info">
-                        <div class="client-avatar">أ</div>
-                        <div class="client-details">
-                            <h4>أحمد محمد</h4>
-                            <p>مدير مالي، شركة الأفق</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card">
-                    <div class="stars">
-                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i>
-                    </div>
-                    <p class="testimonial-text">"الدعم الفني رائع والاستجابة سريعة جداً. البرنامج يوفر ميزة الفوترة الإلكترونية بشكل يتوافق مع متطلبات هيئة الزكاة والدخل بسلاسة."</p>
-                    <div class="client-info">
-                        <div class="client-avatar">خ</div>
-                        <div class="client-details">
-                            <h4>خالد عبد الرحمن</h4>
-                            <p>صاحب مؤسسة تجارية</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card">
-                    <div class="stars">
-                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                    </div>
-                    <p class="testimonial-text">"انتقلنا من نظام قديم إلى MultiSystem، ولم نتوقع أن يكون الانتقال بهذه السهولة. إدارة المخزون ونقاط البيع ممتازة وربط الفروع جعل الإدارة مركزية وفعالة."</p>
-                    <div class="client-info">
-                        <div class="client-avatar">س</div>
-                        <div class="client-details">
-                            <h4>سارة عبد الله</h4>
-                            <p>مديرة عمليات</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-about">
-                    <div class="logo">
-                        <i class="fa-solid fa-chart-pie text-gradient"></i>
-                        <span class="text-gradient">MultiSystem</span>
-                    </div>
-                    <p>نقدم لك أفضل الحلول البرمجية والمحاسبية التي ترتقي بأعمالك إلى آفاق جديدة من الاحترافية والدقة.</p>
-                </div>
-                <div class="footer-links">
-                    <h4>روابط هامة</h4>
-                    <ul>
-                        <li><a href="#home">الرئيسية</a></li>
-                        <li><a href="#features">المميزات</a></li>
-                        <li><a href="#pricing">الباقات</a></li>
-                        <li><a href="#">الشروط والأحكام</a></li>
-                    </ul>
-                </div>
-                <div class="footer-links">
-                    <h4>تواصل معنا</h4>
-                    <ul>
-                        <li><a href="#"><i class="fa-brands fa-whatsapp"></i> +20 10 1234 5678</a></li>
-                        <li><a href="#"><i class="fa-regular fa-envelope"></i> info@multisystem.com</a></li>
-                        <li><a href="#"><i class="fa-solid fa-location-dot"></i> القاهرة، جمهورية مصر العربية</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 MultiSystem. جميع الحقوق محفوظة.</p>
-            </div>
-        </div>
-    </footer>
-
-    <script src="script.js"></script>
+        
+        <p class="hint">💡 يمكنك استخدام لوحة المفاتيح للكتابة</p>
+    </div>
+    
+    <script src="app.js"></script>
 </body>
 </html>

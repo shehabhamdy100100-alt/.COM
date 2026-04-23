@@ -1,63 +1,485 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="mobile-web-app-capable" content="yes">
-    <title>الآلة الحاسبة</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="manifest" href="manifest.json">
-</head>
-<body>
-    <div class="calculator">
-        <div class="header">
-            <h1>ولا يا حرامي ... أنا يتيم</h1>
-        </div>
-        
-        <div class="display">
-            <div class="history" id="history"></div>
-            <div class="current" id="display">0</div>
-        </div>
-        
-        <button class="backspace" id="backspace">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M21 4H8l-7 8 7 8h13a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2z"></path>
-                <line x1="18" y1="9" x2="12" y2="15"></line>
-                <line x1="12" y1="9" x2="18" y2="15"></line>
-            </svg>
-            <span>مسح رقم</span>
-        </button>
-        
-        <div class="buttons">
-            <button class="btn btn-red" data-action="clear">C</button>
-            <button class="btn btn-gray" data-action="toggle">±</button>
-            <button class="btn btn-gray" data-action="percent">%</button>
-            <button class="btn btn-orange" data-action="operator" data-value="÷">÷</button>
-            
-            <button class="btn btn-dark" data-action="digit" data-value="7">7</button>
-            <button class="btn btn-dark" data-action="digit" data-value="8">8</button>
-            <button class="btn btn-dark" data-action="digit" data-value="9">9</button>
-            <button class="btn btn-orange" data-action="operator" data-value="×">×</button>
-            
-            <button class="btn btn-dark" data-action="digit" data-value="4">4</button>
-            <button class="btn btn-dark" data-action="digit" data-value="5">5</button>
-            <button class="btn btn-dark" data-action="digit" data-value="6">6</button>
-            <button class="btn btn-orange" data-action="operator" data-value="-">−</button>
-            
-            <button class="btn btn-dark" data-action="digit" data-value="1">1</button>
-            <button class="btn btn-dark" data-action="digit" data-value="2">2</button>
-            <button class="btn btn-dark" data-action="digit" data-value="3">3</button>
-            <button class="btn btn-orange" data-action="operator" data-value="+">+</button>
-            
-            <button class="btn btn-dark span-2" data-action="digit" data-value="0">0</button>
-            <button class="btn btn-dark" data-action="decimal">.</button>
-            <button class="btn btn-green" data-action="equals">=</button>
-        </div>
-        
-        <p class="hint">💡 يمكنك استخدام لوحة المفاتيح للكتابة</p>
-    </div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="theme-color" content="#f59e0b" />
+    <meta name="description" content="آلة حاسبة مضحكة - ولا يا حرامي! أنا يتيم وحياة أمك" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <title>الآلة الحاسبة - ولا يا حرامي 🔒</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      * {
+        -webkit-tap-highlight-color: transparent;
+      }
+      
+      body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        direction: rtl;
+        text-align: right;
+      }
+      
+      .animate-bounce-custom {
+        animation: bounce 0.15s ease-in-out;
+      }
+      
+      @keyframes bounce {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(0.95); }
+      }
+      
+      .loading-screen {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(135deg, #fef3c7 0%, #fde68a 50%, #fbbf24 100%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+      }
+      
+      .loading-spinner {
+        width: 60px;
+        height: 60px;
+        border: 4px solid #fbbf24;
+        border-top-color: #92400e;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      }
+      
+      @keyframes spin {
+        to { transform: rotate(360deg); }
+      }
+    </style>
+  </head>
+  <body class="min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50">
     
-    <script src="app.js"></script>
-</body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loading">
+      <div class="text-3xl font-bold text-amber-800 mb-4">🧮 الآلة الحاسبة</div>
+      <div class="text-xl font-bold text-red-600 bg-white px-6 py-2 rounded-full shadow-lg mb-4">
+        🔒 ولا يا حرامي!
+      </div>
+      <div class="loading-spinner mb-4"></div>
+      <div class="text-amber-700">جاري التحميل... أنا يتيم وحياة أمك 💔</div>
+    </div>
+
+    <!-- Main App -->
+    <div class="py-4 px-2 sm:py-8 sm:px-4 hidden" id="app">
+      <div class="max-w-md mx-auto">
+        
+        <!-- Header -->
+        <div class="text-center mb-6">
+          <div class="inline-flex items-center gap-2 bg-red-600 text-white px-4 py-2 rounded-full shadow-lg mb-3 animate-pulse">
+            <span>🛡️</span>
+            <span class="font-bold text-sm">تحذير: لا تسرق!</span>
+          </div>
+          <h1 class="text-3xl sm:text-4xl font-black text-amber-800 mb-2 drop-shadow-sm">
+            الآلة الحاسبة
+          </h1>
+          <p class="text-lg sm:text-xl font-bold text-red-600 bg-white/80 inline-block px-4 py-1 rounded-lg shadow-sm">
+            ولا يا حرامي 🔒
+          </p>
+          <p class="text-sm text-amber-700 mt-2 bg-white/60 rounded-lg px-3 py-1 inline-block">
+            أنا يتيم وحياة أمك 💔
+          </p>
+        </div>
+
+        <!-- Calculator -->
+        <div class="bg-gradient-to-br from-slate-800 to-slate-900 rounded-3xl p-4 sm:p-6 shadow-2xl border-4 border-amber-400" id="calculator">
+          
+          <!-- Display -->
+          <div class="bg-gradient-to-br from-green-200 to-emerald-300 rounded-2xl p-4 mb-4 shadow-inner border-2 border-green-400">
+            <div class="text-right mb-1 h-6">
+              <span id="previousDisplay" class="text-slate-600 text-sm font-medium"></span>
+            </div>
+            <div class="text-right text-4xl sm:text-5xl font-black text-slate-800 overflow-hidden overflow-ellipsis whitespace-nowrap" id="display">
+              0
+            </div>
+            <div class="text-center mt-2">
+              <span class="text-xs text-green-700 bg-green-100 px-2 py-0.5 rounded-full">
+                🔊 اضغط على الأرقام للسماع
+              </span>
+            </div>
+          </div>
+
+          <!-- Keypad -->
+          <div class="grid grid-cols-4 gap-2 sm:gap-3" id="keypad">
+            <!-- Row 1 -->
+            <button onclick="handleClear()" class="bg-red-500 hover:bg-red-600 text-white rounded-xl p-3 sm:p-4 text-xl sm:text-2xl font-bold transition-all duration-100 active:scale-95 shadow-lg">C</button>
+            <button onclick="handleBackspace()" class="bg-orange-500 hover:bg-orange-600 text-white rounded-xl p-3 sm:p-4 text-xl sm:text-2xl font-bold transition-all duration-100 active:scale-95 shadow-lg">⌫</button>
+            <button onclick="handleOperation('÷')" class="bg-purple-500 hover:bg-purple-600 text-white rounded-xl p-3 sm:p-4 text-xl sm:text-2xl font-bold transition-all duration-100 active:scale-95 shadow-lg">÷</button>
+            <button onclick="handleOperation('×')" class="bg-purple-500 hover:bg-purple-600 text-white rounded-xl p-3 sm:p-4 text-xl sm:text-2xl font-bold transition-all duration-100 active:scale-95 shadow-lg">×</button>
+            
+            <!-- Row 2 -->
+            <button onclick="handleNumber('7')" class="bg-slate-600 hover:bg-slate-500 text-white rounded-xl p-3 sm:p-4 text-xl sm:text-2xl font-bold transition-all duration-100 active:scale-95 shadow-lg num-btn">7</button>
+            <button onclick="handleNumber('8')" class="bg-slate-600 hover:bg-slate-500 text-white rounded-xl p-3 sm:p-4 text-xl sm:text-2xl font-bold transition-all duration-100 active:scale-95 shadow-lg num-btn">8</button>
+            <button onclick="handleNumber('9')" class="bg-slate-600 hover:bg-slate-500 text-white rounded-xl p-3 sm:p-4 text-xl sm:text-2xl font-bold transition-all duration-100 active:scale-95 shadow-lg num-btn">9</button>
+            <button onclick="handleOperation('-')" class="bg-purple-500 hover:bg-purple-600 text-white rounded-xl p-3 sm:p-4 text-xl sm:text-2xl font-bold transition-all duration-100 active:scale-95 shadow-lg">-</button>
+            
+            <!-- Row 3 -->
+            <button onclick="handleNumber('4')" class="bg-slate-600 hover:bg-slate-500 text-white rounded-xl p-3 sm:p-4 text-xl sm:text-2xl font-bold transition-all duration-100 active:scale-95 shadow-lg num-btn">4</button>
+            <button onclick="handleNumber('5')" class="bg-slate-600 hover:bg-slate-500 text-white rounded-xl p-3 sm:p-4 text-xl sm:text-2xl font-bold transition-all duration-100 active:scale-95 shadow-lg num-btn">5</button>
+            <button onclick="handleNumber('6')" class="bg-slate-600 hover:bg-slate-500 text-white rounded-xl p-3 sm:p-4 text-xl sm:text-2xl font-bold transition-all duration-100 active:scale-95 shadow-lg num-btn">6</button>
+            <button onclick="handleOperation('+')" class="bg-purple-500 hover:bg-purple-600 text-white rounded-xl p-3 sm:p-4 text-xl sm:text-2xl font-bold transition-all duration-100 active:scale-95 shadow-lg">+</button>
+            
+            <!-- Row 4 -->
+            <button onclick="handleNumber('1')" class="bg-slate-600 hover:bg-slate-500 text-white rounded-xl p-3 sm:p-4 text-xl sm:text-2xl font-bold transition-all duration-100 active:scale-95 shadow-lg num-btn">1</button>
+            <button onclick="handleNumber('2')" class="bg-slate-600 hover:bg-slate-500 text-white rounded-xl p-3 sm:p-4 text-xl sm:text-2xl font-bold transition-all duration-100 active:scale-95 shadow-lg num-btn">2</button>
+            <button onclick="handleNumber('3')" class="bg-slate-600 hover:bg-slate-500 text-white rounded-xl p-3 sm:p-4 text-xl sm:text-2xl font-bold transition-all duration-100 active:scale-95 shadow-lg num-btn">3</button>
+            <button onclick="handleEquals()" class="bg-green-500 hover:bg-green-600 text-white rounded-xl p-3 sm:p-4 text-xl sm:text-2xl font-bold transition-all duration-100 active:scale-95 shadow-lg row-span-2">=</button>
+            
+            <!-- Row 5 -->
+            <button onclick="handleNumber('0')" class="bg-slate-600 hover:bg-slate-500 text-white rounded-xl p-3 sm:p-4 text-xl sm:text-2xl font-bold transition-all duration-100 active:scale-95 shadow-lg col-span-2 num-btn">0</button>
+            <button onclick="handleDecimal()" class="bg-slate-600 hover:bg-slate-500 text-white rounded-xl p-3 sm:p-4 text-xl sm:text-2xl font-bold transition-all duration-100 active:scale-95 shadow-lg">.</button>
+          </div>
+        </div>
+
+        <!-- History -->
+        <div class="mt-4 space-y-3">
+          <div class="bg-white/80 rounded-xl p-3 shadow-md">
+            <div class="flex items-center gap-2 mb-2 text-slate-700">
+              <span>🕐</span>
+              <span class="text-sm font-bold">آخر العمليات</span>
+            </div>
+            <div id="history" class="space-y-1">
+              <p class="text-sm text-slate-500">لم يتم أي عملية بعد</p>
+            </div>
+          </div>
+
+          <div class="bg-gradient-to-r from-amber-100 to-orange-100 rounded-xl p-3 text-center shadow-md">
+            <p class="text-sm text-amber-800 font-medium">
+              ⚠️ تنبيه: الأصوات للمتعة فقط!
+            </p>
+            <p class="text-xs text-amber-700 mt-1">
+              اضغط على أي رقم لسماع صوت مضحك 😂
+            </p>
+          </div>
+
+          <div class="text-center text-xs text-slate-500">
+            <p>صُنعت بـ ❤️ للأيتام والصالحين</p>
+            <p class="mt-1">يعمل على جميع الأجهزة 📱💻🖥️</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Calculator State
+      let display = '0';
+      let previousValue = null;
+      let operation = null;
+      let waitingForOperand = false;
+      let history = [];
+
+      // Audio Context for funny sounds
+      let audioContext = null;
+
+      // Initialize Audio Context on first user interaction
+      function initAudio() {
+        if (!audioContext) {
+          audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        }
+        return audioContext;
+      }
+
+      // Sound patterns for each key
+      const soundPatterns = {
+        '1': { freq: 200, duration: 0.3, type: 'sawtooth', pattern: [200, 250, 200] },
+        '2': { freq: 300, duration: 0.35, type: 'square', pattern: [300, 350, 300] },
+        '3': { freq: 400, duration: 0.25, type: 'triangle', pattern: [400, 500, 400] },
+        '4': { freq: 250, duration: 0.4, type: 'sawtooth', pattern: [250, 200, 250, 300] },
+        '5': { freq: 350, duration: 0.3, type: 'square', pattern: [350, 400, 350] },
+        '6': { freq: 450, duration: 0.35, type: 'triangle', pattern: [450, 500, 450] },
+        '7': { freq: 180, duration: 0.45, type: 'sawtooth', pattern: [180, 220, 180, 250] },
+        '8': { freq: 280, duration: 0.3, type: 'square', pattern: [280, 320, 280] },
+        '9': { freq: 380, duration: 0.4, type: 'triangle', pattern: [380, 420, 380, 450] },
+        '0': { freq: 150, duration: 0.5, type: 'sawtooth', pattern: [150, 180, 150, 200, 150] },
+        'op': { freq: 500, duration: 0.2, type: 'square', pattern: [500, 600, 500] },
+        'equals': { freq: 600, duration: 0.4, type: 'triangle', pattern: [600, 700, 800, 700, 600] },
+        'clear': { freq: 100, duration: 0.3, type: 'sawtooth', pattern: [100, 80, 60] },
+        'back': { freq: 300, duration: 0.15, type: 'square', pattern: [300, 250] },
+        'decimal': { freq: 400, duration: 0.1, type: 'triangle', pattern: [400, 450] }
+      };
+
+      // Play funny sound
+      function playFunnySound(key) {
+        try {
+          const ctx = initAudio();
+          if (ctx.state === 'suspended') {
+            ctx.resume();
+          }
+
+          const pattern = soundPatterns[key] || soundPatterns['1'];
+          const now = ctx.currentTime;
+
+          // Main oscillator
+          const oscillator = ctx.createOscillator();
+          const gainNode = ctx.createGain();
+          
+          // Second oscillator for harmony
+          const oscillator2 = ctx.createOscillator();
+          const gainNode2 = ctx.createGain();
+          
+          // Noise for extra funniness
+          const noiseBuffer = ctx.createBuffer(1, ctx.sampleRate * 0.1, ctx.sampleRate);
+          const noiseData = noiseBuffer.getChannelData(0);
+          for (let i = 0; i < noiseData.length; i++) {
+            noiseData[i] = Math.random() * 2 - 1;
+          }
+          const noiseSource = ctx.createBufferSource();
+          noiseSource.buffer = noiseBuffer;
+          const noiseGain = ctx.createGain();
+
+          // Configure oscillators
+          oscillator.type = pattern.type;
+          oscillator2.type = 'sine';
+
+          // Set frequencies
+          oscillator.frequency.setValueAtTime(pattern.pattern[0], now);
+          for (let i = 1; i < pattern.pattern.length; i++) {
+            oscillator.frequency.linearRampToValueAtTime(
+              pattern.pattern[i],
+              now + (pattern.duration * i) / pattern.pattern.length
+            );
+          }
+
+          oscillator2.frequency.setValueAtTime(pattern.pattern[0] * 1.5, now);
+          oscillator2.frequency.linearRampToValueAtTime(pattern.pattern[0] * 2, now + pattern.duration);
+
+          // Volume envelope
+          gainNode.gain.setValueAtTime(0, now);
+          gainNode.gain.linearRampToValueAtTime(0.3, now + 0.01);
+          gainNode.gain.linearRampToValueAtTime(0.2, now + pattern.duration * 0.5);
+          gainNode.gain.linearRampToValueAtTime(0, now + pattern.duration);
+
+          gainNode2.gain.setValueAtTime(0, now);
+          gainNode2.gain.linearRampToValueAtTime(0.15, now + 0.01);
+          gainNode2.gain.linearRampToValueAtTime(0, now + pattern.duration);
+
+          noiseGain.gain.setValueAtTime(0.05, now);
+          noiseGain.gain.linearRampToValueAtTime(0, now + pattern.duration);
+
+          // Connect everything
+          oscillator.connect(gainNode);
+          oscillator2.connect(gainNode2);
+          noiseSource.connect(noiseGain);
+          
+          gainNode.connect(ctx.destination);
+          gainNode2.connect(ctx.destination);
+          noiseGain.connect(ctx.destination);
+
+          // Start and stop
+          oscillator.start(now);
+          oscillator2.start(now);
+          noiseSource.start(now);
+          
+          oscillator.stop(now + pattern.duration);
+          oscillator2.stop(now + pattern.duration);
+          noiseSource.stop(now + pattern.duration);
+
+          // Wobble effect
+          const lfo = ctx.createOscillator();
+          const lfoGain = ctx.createGain();
+          lfo.frequency.setValueAtTime(10, now);
+          lfoGain.gain.setValueAtTime(20, now);
+          lfo.connect(lfoGain);
+          lfoGain.connect(oscillator.frequency);
+          lfo.start(now);
+          lfo.stop(now + pattern.duration);
+        } catch (e) {
+          console.log('Audio not supported');
+        }
+      }
+
+      // Shake animation
+      function shakeCalculator() {
+        const calc = document.getElementById('calculator');
+        if (calc) {
+          calc.classList.add('animate-bounce-custom');
+          setTimeout(function() {
+            calc.classList.remove('animate-bounce-custom');
+          }, 150);
+        }
+      }
+
+      // Update display
+      function updateDisplay() {
+        const displayEl = document.getElementById('display');
+        const previousDisplayEl = document.getElementById('previousDisplay');
+        
+        if (displayEl) {
+          displayEl.textContent = display.length > 12 ? parseFloat(display).toExponential(6) : display;
+        }
+        
+        if (previousDisplayEl) {
+          if (previousValue && operation) {
+            previousDisplayEl.textContent = previousValue + ' ' + operation;
+          } else {
+            previousDisplayEl.textContent = '';
+          }
+        }
+      }
+
+      // Update history
+      function updateHistory() {
+        const historyEl = document.getElementById('history');
+        
+        if (historyEl) {
+          if (history.length > 0) {
+            let html = '';
+            for (let i = 0; i < history.length; i++) {
+              html += '<div class="text-sm text-slate-600 bg-amber-50 rounded-lg px-2 py-1 font-mono">' + history[i] + '</div>';
+            }
+            historyEl.innerHTML = html;
+          } else {
+            historyEl.innerHTML = '<p class="text-sm text-slate-500">لم يتم أي عملية بعد</p>';
+          }
+        }
+      }
+
+      // Handle number input
+      function handleNumber(num) {
+        playFunnySound(num);
+        shakeCalculator();
+
+        if (waitingForOperand) {
+          display = num;
+          waitingForOperand = false;
+        } else {
+          display = display === '0' ? num : display + num;
+        }
+        updateDisplay();
+      }
+
+      // Handle operation
+      function handleOperation(op) {
+        playFunnySound('op');
+        shakeCalculator();
+
+        var inputValue = parseFloat(display);
+
+        if (previousValue === null) {
+          previousValue = display;
+        } else if (operation) {
+          var currentValue = parseFloat(previousValue);
+          var result = 0;
+
+          if (operation === '+') result = currentValue + inputValue;
+          else if (operation === '-') result = currentValue - inputValue;
+          else if (operation === '×') result = currentValue * inputValue;
+          else if (operation === '÷') result = inputValue !== 0 ? currentValue / inputValue : 0;
+
+          display = String(result);
+          previousValue = String(result);
+        }
+
+        waitingForOperand = true;
+        operation = op;
+        updateDisplay();
+      }
+
+      // Handle equals
+      function handleEquals() {
+        playFunnySound('equals');
+        shakeCalculator();
+
+        if (!operation || previousValue === null) return;
+
+        var inputValue = parseFloat(display);
+        var currentValue = parseFloat(previousValue);
+        var result = 0;
+
+        if (operation === '+') result = currentValue + inputValue;
+        else if (operation === '-') result = currentValue - inputValue;
+        else if (operation === '×') result = currentValue * inputValue;
+        else if (operation === '÷') result = inputValue !== 0 ? currentValue / inputValue : 0;
+
+        var calculation = previousValue + ' ' + operation + ' ' + display + ' = ' + result;
+        history.unshift(calculation);
+        history = history.slice(0, 5);
+        updateHistory();
+
+        display = String(result);
+        previousValue = null;
+        operation = null;
+        waitingForOperand = true;
+        updateDisplay();
+      }
+
+      // Handle clear
+      function handleClear() {
+        playFunnySound('clear');
+        display = '0';
+        previousValue = null;
+        operation = null;
+        waitingForOperand = false;
+        updateDisplay();
+      }
+
+      // Handle backspace
+      function handleBackspace() {
+        playFunnySound('back');
+        display = display.length > 1 ? display.slice(0, -1) : '0';
+        updateDisplay();
+      }
+
+      // Handle decimal
+      function handleDecimal() {
+        playFunnySound('decimal');
+        if (waitingForOperand) {
+          display = '0.';
+          waitingForOperand = false;
+        } else if (display.indexOf('.') === -1) {
+          display = display + '.';
+        }
+        updateDisplay();
+      }
+
+      // Initialize app
+      window.addEventListener('load', function() {
+        setTimeout(function() {
+          var loading = document.getElementById('loading');
+          var app = document.getElementById('app');
+          
+          if (loading && app) {
+            loading.style.opacity = '0';
+            loading.style.transition = 'opacity 0.5s';
+            
+            setTimeout(function() {
+              loading.style.display = 'none';
+              app.classList.remove('hidden');
+            }, 500);
+          }
+        }, 800);
+      });
+
+      // Keyboard support
+      document.addEventListener('keydown', function(e) {
+        if (e.key >= '0' && e.key <= '9') {
+          handleNumber(e.key);
+        } else if (e.key === '+' || e.key === '-') {
+          handleOperation(e.key);
+        } else if (e.key === '*') {
+          handleOperation('×');
+        } else if (e.key === '/') {
+          e.preventDefault();
+          handleOperation('÷');
+        } else if (e.key === 'Enter' || e.key === '=') {
+          handleEquals();
+        } else if (e.key === 'Escape' || e.key === 'c' || e.key === 'C') {
+          handleClear();
+        } else if (e.key === 'Backspace') {
+          handleBackspace();
+        } else if (e.key === '.') {
+          handleDecimal();
+        }
+      });
+    </script>
+  </body>
 </html>
